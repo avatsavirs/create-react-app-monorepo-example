@@ -111,14 +111,14 @@ module.exports = {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
+          // {
+          //   options: {
+          //     formatter: eslintFormatter,
+          //     eslintPath: require.resolve('eslint'),
               
-            },
-            loader: require.resolve('eslint-loader'),
-          },
+          //   },
+          //   loader: require.resolve('eslint-loader'),
+          // },
         ],
         include: paths.appSrc,
       },
@@ -188,6 +188,13 @@ module.exports = {
               },
             ],
           },
+          // {
+          //   test: /\.less$/,
+          //   use: [
+          //     require.resolve('style-loader'),
+          //     require.resolve('less-loader')
+          //   ],
+          // },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
           // In production, they would get copied to the `build` folder.

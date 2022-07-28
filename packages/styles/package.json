@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "name": "@pkg/styles",
+    "license": "MIT",
+    "version": "1.0.0",
+    "main": "./src/index",
+    "module": "./src/index",    
+   
+    "dependencies": {
+      "styled-components": "5.3.0"
+    },
+    "sideEffects": false,
+    "devDependencies": {
+      "@hot-loader/react-dom": "17.0.1"
+    }
+  }
+  

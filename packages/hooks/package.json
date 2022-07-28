@@ -1,0 +1,13 @@
+{
+    "name": "@pkg/hooks",
+    "version": "0.1.0",
+    "private": true,
+    "main": "./src/index",
+    "module": "./src/index",
+    "dependencies": {
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+      "react-intersection-observer": "^9.4.0"
+    }
+  }
+  
