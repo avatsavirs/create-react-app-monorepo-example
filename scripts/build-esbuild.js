@@ -46,6 +46,7 @@ async function buildWithEsBuild() {
       target: resolveToEsbuildTarget(browserslist('>0.25%, not dead'), {
         printUnknownTargets: false,
       }),
+      drop: ['debugger', 'console'], // https://esbuild.github.io/api/#drop
       outdir: paths.appBuild,
       entryNames: '[dir]/[name]-[hash]',
       format: 'esm', // code splitting is only available for esm format
