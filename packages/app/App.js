@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Logo from './logo.svg';
 import SomeComponent from 'some-component';
 import * as hooks from '@pkg/hooks';
 import {Alert,Affix,Badge} from '@pkg/components'
+import { Container } from './App.styled'
 import './App.css';
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Logo class="App-logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <Container>
+            <h1 className="App-title">Welcome to React</h1>
+          </Container>
         </header>
         <p className="App-intro">
           To get started, edit <code>packages/app/App.js</code> and save to reload.
