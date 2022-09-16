@@ -99,7 +99,6 @@
   },
   "devDependencies": {
     "@craftamap/esbuild-plugin-html": "^0.4.0",
-    "esbuild-plugin-inline-image": "^0.0.8",
     "esbuild-plugin-less": "^1.1.9",
     "esbuild-plugin-svgr": "^1.0.1"
   }

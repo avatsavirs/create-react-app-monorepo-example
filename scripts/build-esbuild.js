@@ -58,13 +58,13 @@ function buildWithEsBuild() {
       lessLoader({
         javascriptEnabled: true,
       }),
-      svgrLoader(),
-      // inlineImage(),  -- both svgrLoader and imlineImage loader cannot be used simultaneously
+      // svgrLoader(),
     ],
     loader: {
       '.js': 'jsx',
-      '.svg': 'text',
-    }
+      '.svg': 'dataurl', // imports svgs as dataurl for the svg, this gets overridden by svgrLoader plugin
+    },
+    inject: ['config/polyfills.js']
   })
     .then((result) => {
       console.log({ result });
