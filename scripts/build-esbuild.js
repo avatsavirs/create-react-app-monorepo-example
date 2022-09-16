@@ -47,6 +47,8 @@ function buildWithEsBuild() {
         files: [{
           entryPoints: [path.relative('.', paths.appIndexJs)], // for some reason absolute path doesn't work here.
           filename: 'index.html',
+          title: 'Esbuild React App',
+          favicon: paths.favicon,
           define: {
             PUBLIC_URL: '',
           },
