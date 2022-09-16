@@ -1,6 +1,8 @@
 process.env.NODE_ENV = 'production';
 
 require('../config/env');
+const browserslist = require('browserslist');
+const { resolveToEsbuildTarget } = require('esbuild-plugin-browserslist');
 const path = require('path');
 const fs = require('fs-extra');
 const esbuild = require('esbuild');
@@ -36,12 +38,17 @@ function buildWithEsBuild() {
       paths.appIndexJs,
     ],
     bundle: true,
-    minify: true,
+    minify: true, // https://esbuild.github.io/api/#minify
     metafile: true, // required for htmlPlugin
-    sourcemap: true,
-    write: true,
+    sourcemap: true, // https://esbuild.github.io/api/#sourcemap
+    write: true, // allow esbuild to write to the file system. This is true by default
+    target: resolveToEsbuildTarget(browserslist('>0.25%, not dead'), {
+      printUnknownTargets: false,
+    }),
     outdir: paths.appBuild,
     entryNames: '[dir]/[name]-[hash]',
+    format: 'esm', // code splitting is only available for esm format
+    splitting: true, // https://esbuild.github.io/api/#splitting
     plugins: [
       htmlPlugin({
         files: [{
