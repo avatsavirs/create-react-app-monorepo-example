@@ -44,6 +44,7 @@ module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
+  appHtmlEsbuild: resolveApp('public/index-esbuild.html'),
   appIndexJs: resolveApp('packages/app/index.js'), // Point to Yarn Workpaces package
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('packages'), // Point to Yarn Workpaces
