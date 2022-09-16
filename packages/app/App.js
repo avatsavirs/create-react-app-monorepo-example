@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SomeComponent from 'some-component';
 import * as hooks from '@pkg/hooks';
-import {Alert,Affix,Badge} from '@pkg/components'
+import { Alert, Affix, Badge } from '@pkg/components'
 import './App.css';
 import { Container } from './App.styled'
 class App extends Component {

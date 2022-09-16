@@ -74,7 +74,10 @@ function buildWithEsBuild() {
     inject: ['config/polyfills.js']
   })
     .then((result) => {
-      console.log({ result });
+      return esbuild.analyzeMetafile(result.metafile);
+    })
+    .then((result) => {
+      console.info(result)
     })
     .catch(() => {
       process.exit(1)
