@@ -11,12 +11,33 @@ const svgrLoader = require('esbuild-plugin-svgr') // imports image as react comp
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const { htmlPlugin } = require('@craftamap/esbuild-plugin-html');
 const paths = require('../config/paths');
+const { injectManifest } = require('workbox-build');
 
 function copyPublicFolder() {
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
     filter: file => ![paths.appHtml, paths.appHtmlEsbuild].includes(file),
   });
+}
+
+async function buildSwFiles() {
+  await injectManifest({
+    globDirectory: paths.appBuild,
+    globPatterns:[ '*.js', '*.css' ],
+    swSrc: `${paths.packageAppPublic}/service-worker.js`,
+    swDest: `${paths.packageAppPublic}/service-worker-injected.js`,
+  });
+  const swBuildOutput = await esbuild.build({
+    entryPoints: [
+      `${paths.packageAppPublic}/service-worker-injected.js`,
+    ],
+    outfile: `${paths.appBuild}/service-worker.js`,
+    bundle: true,
+    target: resolveToEsbuildTarget(browserslist('>0.25%, not dead'), {
+      printUnknownTargets: false,
+    }),
+  });
+  fs.removeSync(`${paths.packageAppPublic}/service-worker-injected.js`);
 }
 
 async function buildWithEsBuild() {
@@ -74,10 +95,12 @@ async function buildWithEsBuild() {
         '.svg': 'dataurl', // imports svgs as dataurl for the svg, this gets overridden by svgrLoader plugin
       },
       inject: ['config/polyfills.js']
-    })
+    });
     const buildOutputAnalysis = await esbuild.analyzeMetafile(buildOutput.metafile);
-    console.info(buildOutputAnalysis);
+    // console.info(buildOutputAnalysis);
+    await buildSwFiles();
   } catch(e) {
+    console.error(e)
     process.exit(1);
   }
 }
