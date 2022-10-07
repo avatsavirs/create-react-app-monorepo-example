@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 const fs = require('fs');
@@ -46,6 +46,7 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   appHtmlEsbuild: resolveApp('public/index-esbuild.html'),
   appIndexJs: resolveApp('packages/app/index.js'), // Point to Yarn Workpaces package
+  packageAppPublic: resolveApp('packages/app/public'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('packages'), // Point to Yarn Workpaces
   yarnLockFile: resolveApp('yarn.lock'),
