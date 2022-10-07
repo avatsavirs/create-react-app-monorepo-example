@@ -1,3 +1,3 @@
 import { precacheAndRoute } from 'workbox-precaching';
 
-precacheAndRoute([]); //eslint-disable-line
+precacheAndRoute(self.__WB_MANIFEST); //eslint-disable-line
