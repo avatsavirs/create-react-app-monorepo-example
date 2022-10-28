@@ -59,6 +59,7 @@ async function buildWithEsBuild() {
         */
         paths.appIndexJs,
       ],
+      jsx: 'automatic',
       bundle: true,
       minify: true, // https://esbuild.github.io/api/#minify
       metafile: true, // required for htmlPlugin
