@@ -72,6 +72,9 @@ async function buildWithEsBuild() {
       entryNames: '[dir]/[name]-[hash]',
       format: 'esm', // code splitting is only available for esm format
       splitting: true, // https://esbuild.github.io/api/#splitting
+      define: {
+        'process.env.NODE_ENV': '"production"',
+      },
       plugins: [
         htmlPlugin({
           files: [{
